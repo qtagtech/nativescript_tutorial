@@ -1,7 +1,11 @@
 import {Component} from "@angular/core";
+import {NS_ROUTER_DIRECTIVES} from "nativescript-angular/router";
 
 @Component({
-  selector: "my-app",
-  template: "<Label text='hello world'></Label>"
+  selector: "main",
+  directives: [NS_ROUTER_DIRECTIVES],
+  template: "<page-router-outlet></page-router-outlet>"
 })
-export class AppComponent {}
+
+
+export class AppComponent{}
