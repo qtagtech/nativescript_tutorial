@@ -2,10 +2,12 @@ import {RouterConfig} from "@angular/router";
 import {nsProvideRouter} from "nativescript-angular/router";
 import {LoginPage} from "./pages/login/login.component";
 import {ListPage} from "./pages/list/list.component";
+import {GamesPage} from "./pages/games/games.component";
 
 export const routes: RouterConfig = [
     { path: "", component: LoginPage },
-    { path: "list", component: ListPage }
+    { path: "list", component: ListPage },
+    { path: "games", component: GamesPage }
 
 ];
 

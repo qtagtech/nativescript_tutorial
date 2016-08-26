@@ -2,7 +2,7 @@ StackLayout {
     margin-left: 30;
     margin-right: 30;
     padding-bottom: 15;
-    background-color: white;
+    background-color: black;
 }
 Image {
     margin-top: 5;
@@ -14,7 +14,7 @@ Button, TextField {
     margin-bottom: 10;
 }
 .submit-button {
-    background-color: #CB1D00;
+    background-color: #3333bb;
     color: white;
     margin-top: 20;
 }

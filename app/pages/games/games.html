@@ -1,0 +1,11 @@
+<GridLayout rows="auto">
+    <ListView [items]="gameList" row="0" [class.visible]="listLoaded">
+        <template let-game="item">
+            <StackLayout orientation="vertical">
+                <Label [text]="game.name"></Label>
+                <Image [src]="game.image.url" stretch="aspectFill"></Image>
+            </StackLayout>
+        </template>
+    </ListView>
+    <ActivityIndicator [busy]="isLoading" [visibility]="isLoading ? 'visible' : 'collapse'" row="1" horizontalAlignment="center" verticalAlignment="center"></ActivityIndicator>
+</GridLayout>

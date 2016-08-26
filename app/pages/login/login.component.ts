@@ -41,7 +41,7 @@ export class LoginPage implements OnInit {
     login() {
         this._userService.login(this.user)
             .subscribe(
-                ()=> this._router.navigate(["/list"]),
+                ()=> this._router.navigate(["/games"]),
                 (error: Error) => alert(error.message)
             );
     }
@@ -66,7 +66,7 @@ export class LoginPage implements OnInit {
         this.setTextFieldColors();
         let container = <View>this.container.nativeElement;
         container.animate({
-            backgroundColor: this.isLoggingIn ? new Color("white") : new Color("#301217"),
+            backgroundColor: this.isLoggingIn ? new Color("black") : new Color("#301217"),
             duration: 200,
             curve: AnimationCurve.easeIn
         });
@@ -76,17 +76,18 @@ export class LoginPage implements OnInit {
         let emailTextField = <TextField>this.email.nativeElement;
         let passwordTextField = <TextField>this.password.nativeElement;
 
-        let mainTextColor = new Color(this.isLoggingIn ? "black" : "#C4AFB4");
+        let mainTextColor = new Color(this.isLoggingIn ? "#FFFFFF" : "#C4AFB4");
         emailTextField.color = mainTextColor;
         passwordTextField.color = mainTextColor;
 
-        let hintColor = new Color(this.isLoggingIn ? "#ACA6A7" : "#C4AFB4");
+        let hintColor = new Color(this.isLoggingIn ? "#FFFFFF" : "#C4AFB4");
         setHintColor({ view: emailTextField, color: hintColor });
         setHintColor({ view: passwordTextField, color: hintColor });
     }
 
     ngOnInit() {
         this.page.actionBarHidden = true;
-        this.page.backgroundImage = "res://bg_login";
+        this.page.backgroundImage = "res://bg_inner";
+        this.setTextFieldColors();
     }
 }
