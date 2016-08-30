@@ -1,6 +1,15 @@
+Page {
+  background-color: black;
+}
 ListView{
   opacity: 0;
+  background-color: #00000000;
 }
+
+.grid-layout{
+  background-image: url("res://bg_inner");
+}
+
 .visible{
   animation-name: show;
   animation-duration: 1s;
@@ -10,16 +19,22 @@ ListView{
   from {opacity: 0;}
   to {opacity: 1;}
 }
-.add-bar {
-  background-color: #CB1D00;
-  padding: 5 10;
-}
-.add-bar Image {
-  height: 15;
+
+Image {
+  text-align: center;
   vertical-align: center;
-  margin-left: 10;
-  margin-right: 5;
+  margin: 0;
 }
 TextField {
   color: white;
+}
+
+.list-view-item {
+  background-color: #00000000;
+  height: 250;
+  color: #212121;
+  padding-top: 16;
+  padding-bottom: 16;
+  padding-left: 16;
+  padding-right: 16;
 }

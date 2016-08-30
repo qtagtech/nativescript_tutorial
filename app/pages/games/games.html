@@ -1,9 +1,8 @@
-<GridLayout rows="auto">
-    <ListView [items]="gameList" row="0" [class.visible]="listLoaded">
+<GridLayout class="grid-layout" rows="*,auto">
+    <ListView [items]="gameList" row="0" [class.visible]="listLoaded" (itemLoading)="onItemLoading($event)" (itemTap)="listViewItemTap($event)">
         <template let-game="item">
-            <StackLayout orientation="vertical">
-                <Label [text]="game.name"></Label>
-                <Image [src]="game.image.url" stretch="aspectFill"></Image>
+            <StackLayout class="list-view-item" orientation="vertical">
+                <Image [src]="game.image.imageSrc" ></Image>
             </StackLayout>
         </template>
     </ListView>

@@ -1,22 +1,18 @@
-/**
- * Created by jarro on 26/08/16.
- */
-import * as application from "application";
-import {Observable} from "data/observable";
-import {ImageSource} from "image-source";
-import {Cache} from "ui/image-cache";
+import observable = require("data/observable");
+import imageCache = require("ui/image-cache");
+import imageSource = require("image-source");
 
+var cache = new imageCache.Cache();
+cache.maxRequests = 10;
+cache.placeholder = imageSource.fromResource("placeholder");
 
-
-export class GameImage extends Observable
+export class GameImage extends observable.Observable
 {
-    private cache = new Cache();
-    private imageSource = new ImageSource();
-    private _oImg: any; /* 1 */
-
-    get imageSrc(): ImageSource
+    private _imageSrc: string
+    private _name: string;
+    get imageSrc(): imageSource.ImageSource
     {
-        var image = this.cache.get(this._oImg.url);
+        var image = cache.get(this._imageSrc);
 
         if (image)
         {
@@ -25,58 +21,28 @@ export class GameImage extends Observable
 
         cache.push(
             {
-                key: this._oImg.url
-                , url: this._oImg.url
+                key: this._imageSrc
+                , url: this._imageSrc
                 , completed:
                 (image) =>
                 {
-                    if(image){  /* 2 */
-                        this.notify(
-                            {
-                                object: this
-                                , eventName: Observable.propertyChangeEvent
-                                , propertyName: "imageSrc"
-                                , value: image
-                            });
-                    }
+                    this.notify(
+                        {
+                            object: this
+                            , eventName: observable.Observable.propertyChangeEvent
+                            , propertyName: "imageSrc"
+                            , value: image
+                        });
                 }
             });
 
-        /* 3  starts */
-        var scaledPlaceholderImageSrc;
-
-        // resizing placeholder image for android.
-        if(application.android){
-            if(this.cache.placeholder.android){
-                var resizedBitmap = application.android.graphics.Bitmap.createScaledBitmap(this.cache.placeholder.android, this._oImg.width, this._oImg.height, true);
-                scaledPlaceholderImageSrc = resizedBitmap;
-            }
-        }
-
-
-        // resizing placeholder image for ios.
-        if(application.ios){
-            if(this.cache.placeholder.ios){
-                let cgSize = application.ios.CGSizeMake(this._oImg.width, this._oImg.height);
-                application.ios.UIGraphicsBeginImageContextWithOptions(cgSize, false, 0.0);
-
-                this.cache.placeholder.ios.drawInRect(application.ios.CGRectMake(0, 0, this._oImg.width, this._oImg.height));
-                let newImageSource = application.ios.UIGraphicsGetImageFromCurrentImageContext();
-                application.ios.UIGraphicsEndImageContext();
-                scaledPlaceholderImageSrc = newImageSource;
-            }
-        }
-
-
-        var newImg = new ImageSource();
-        newImg.setNativeSource(scaledPlaceholderImageSrc);
-        return newImg;
-        /* 3 ends */
+        return cache.placeholder;
     }
 
-    constructor(imageSrc : string)
+    constructor(name:string,imageSrc : string)
     {
         super();
+        this._name = name;
         this._imageSrc = imageSrc;
     }
 }
