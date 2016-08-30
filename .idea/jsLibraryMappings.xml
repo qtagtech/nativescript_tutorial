@@ -2,7 +2,6 @@
 <project version="4">
   <component name="JavaScriptLibraryMappings">
     <file url="file://$PROJECT_DIR$" libraries="{sample-Groceries/node_modules}" />
-    <file url="file://$PROJECT_DIR$/platforms/ios/build/emulator/sampleGroceries.app/app/tns_modules/@angular/platform-server" libraries="{sample-Groceries/platforms/ios/build/emulator/sampleGroceries.app/app/tns_modules/@angular/platform-server/node_modules}" />
     <file url="file://$PROJECT_DIR$/platforms/ios/sampleGroceries/app/tns_modules/@angular/platform-server" libraries="{sample-Groceries/platforms/ios/sampleGroceries/app/tns_modules/@angular/platform-server/node_modules}" />
   </component>
 </project>

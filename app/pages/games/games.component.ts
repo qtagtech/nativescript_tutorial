@@ -3,8 +3,6 @@ import {Game} from "../../shared/game/game";
 import {GameImage} from "../../shared/gameImage/gameImage";
 import {GroceryListService} from "../../shared/grocery/grocery-list.service";
 import {CustomError} from "../../shared/error/error";
-var imageSourceModule = require("image-source");
-var imageCache = require("ui/image-cache");
 import observableArray = require("data/observable-array");
 import observable = require("data/observable");
 
